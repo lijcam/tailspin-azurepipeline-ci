@@ -4,7 +4,6 @@ variables:
   buildConfiguration: 'Release'
   webRepository: 'web'
   tag: '$(Build.BuildId)'
-  WebAppName: 'Tailspin Space Game'
 
 stages:
 - stage: 'Build'
