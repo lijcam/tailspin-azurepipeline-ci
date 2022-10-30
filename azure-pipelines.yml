@@ -5,7 +5,6 @@ variables:
   webRepository: 'web'
   tag: '$(Build.BuildId)'
   WebAppName: 'Tailspin Space Game'
-  containerRegistry: 'https://quay.io/lijcam/space-game-web:v1'
 
 stages:
 - stage: 'Build'
