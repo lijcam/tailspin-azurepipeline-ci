@@ -4,6 +4,8 @@ variables:
   buildConfiguration: 'Release'
   webRepository: 'web'
   tag: '$(Build.BuildId)'
+  WebAppName: 'Tailspin Space Game'
+  containerRegistry: 'https://quay.io/lijcam/space-game-web:v1'
 
 stages:
 - stage: 'Build'
@@ -21,23 +23,23 @@ stages:
         buildContext: $(Build.Repository.LocalPath)
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        containerRegistry: 'Container Registry Connection'
+        containerRegistry: $(containerRegistry)
         tags: |
           $(tag)
 
-- stage: 'Deploy'
-  displayName: 'Deploy the container'
-  dependsOn: Build
-  jobs:
-  - job: 'Deploy'
-    displayName: 'Deploy job'
-    pool:
-      vmImage: 'ubuntu-20.04'
-    variables:
-    - group: Release
-    steps:
-    - task: AzureWebAppContainer@1
-      inputs:
-       appName: $(WebAppName)
-       azureSubscription: 'Resource Manager - Tailspin - Space Game'
-       imageName: $(RegistryName)/$(webRepository):$(build.buildId)
+#- stage: 'Deploy'
+#  displayName: 'Deploy the container'
+#  dependsOn: Build
+#  jobs:
+# - job: 'Deploy'
+#    displayName: 'Deploy job'
+#    pool:
+#      vmImage: 'ubuntu-20.04'
+#    variables:
+#    - group: Release
+#    steps:
+#    - task: AzureWebAppContainer@1
+#      inputs:
+#       appName: $(WebAppName)
+#       azureSubscription: 'Resource Manager - Tailspin - Space Game'
+#       imageName: $(RegistryName)/$(webRepository):$(build.buildId) ##
