@@ -18,7 +18,7 @@ stages:
     - task: Docker@2
       displayName: 'Build and push tailspin image to container registry'
       inputs:
-        command: build
+        command: buildAndPush
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.Web'
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
@@ -34,10 +34,10 @@ stages:
     - task: Docker@2
       displayName: 'Build and push leaderboard image to container registry'
       inputs:
-        command: build
+        command: buildAndPush
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.LeaderboardContainer'
         repository: $(webRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.LeaderboardContainer/Dockerfile'
-        containerRegistry: 'Space Game Leaderboard Service Connection'
+        containerRegistry: 'Space Game Service Connection'
         tags: |
           $(tag)
