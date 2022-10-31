@@ -38,6 +38,11 @@ stages:
       vmImage: $(vmImage)
     steps:
     - task: Docker@2
+      displayName: Login
+      inputs:
+        command: login
+        containerRegistry: 'Space Game Service Connection'
+    - task: Docker@2
       displayName: 'Build and push leaderboard image to container registry'
       inputs:
         command: buildAndPush
