@@ -15,7 +15,17 @@ stages:
       vmImage: 'ubuntu-20.04'
     steps:
     - task: Docker@2
-      displayName: 'Build and push the image to container registry'
+      displayName: 'Build and push tailspin image to container registry'
+      inputs:
+        command: buildAndPush
+        buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.Web'
+        repository: $(webRepository)
+        dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
+        containerRegistry: 'Space Game Service Connection'
+        tags: |
+          $(tag)
+    - task: Docker@2
+      displayName: 'Build and push leaderboard image to container registry'
       inputs:
         command: buildAndPush
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.Web'
