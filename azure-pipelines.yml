@@ -3,7 +3,7 @@ trigger: none
 variables:
   buildConfiguration: 'Release'
   webTailspinRepository: 'lijcam/space-game-web'
-  webLeaderboardRepository: 'lijcam/space-game-leadeboard'
+  webLeaderboardRepository: 'lijcam/space-game-leaderboard'
   tag: '$(Build.BuildId)'
   vmImage: 'ubuntu-20.04'
 
