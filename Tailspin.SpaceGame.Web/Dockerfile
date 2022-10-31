@@ -6,8 +6,8 @@ WORKDIR /src
 #COPY ["Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj", "Tailspin.SpaceGame.Web/"]
 COPY ["Tailspin.SpaceGame.Web.csproj", "Tailspin.SpaceGame.Web/"]
 
-#RUN dotnet restore "Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj"
-RUN dotnet restore "Tailspin.SpaceGame.Web.csproj"
+RUN dotnet restore "Tailspin.SpaceGame.Web/Tailspin.SpaceGame.Web.csproj"
+#RUN dotnet restore "Tailspin.SpaceGame.Web.csproj"
 #COPY . .
 COPY "." "/src/Tailspin.SpaceGame.Web"
 WORKDIR "/src/Tailspin.SpaceGame.Web"
