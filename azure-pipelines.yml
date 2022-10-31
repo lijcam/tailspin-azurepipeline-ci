@@ -2,7 +2,8 @@ trigger: none
 
 variables:
   buildConfiguration: 'Release'
-  webRepository: 'web'
+  webTailspinRepository: 'lijcam/space-game-web'
+  webLeaderboardRepository: 'lijcam/space-game-leadeboard'
   tag: '$(Build.BuildId)'
   vmImage: 'ubuntu-20.04'
 
@@ -16,13 +17,18 @@ stages:
       vmImage: $(vmImage)
     steps:
     - task: Docker@2
+      displayName: Login
+      inputs:
+        command: login
+        containerRegistry: 'Space Game Service Connection'
+    - task: Docker@2
       displayName: 'Build and push tailspin image to container registry'
       inputs:
         command: buildAndPush
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.Web'
-        repository: $(webRepository)
+        repository: $(webTailspinRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        containerRegistry: 'Space Game Service Connection'
+        #containerRegistry: 'Space Game Service Connection'
         tags: |
           $(tag)
   - job: 'BuildLeaderboard'
@@ -36,8 +42,8 @@ stages:
       inputs:
         command: buildAndPush
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.LeaderboardContainer'
-        repository: $(webRepository)
+        repository: $(webLeaderboardRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.LeaderboardContainer/Dockerfile'
-        containerRegistry: 'Space Game Service Connection'
+        #containerRegistry: 'Space Game Service Connection'
         tags: |
           $(tag)
