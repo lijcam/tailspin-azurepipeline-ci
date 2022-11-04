@@ -36,7 +36,7 @@ stages:
       displayName: Login
       inputs:
         command: login
-        containerRegistry: 'Space Game Service Connection'
+        containerRegistry: $(demotimne)
     - task: Docker@2
       displayName: 'Build and push tailspin image to container registry'
       inputs:
@@ -56,7 +56,7 @@ stages:
       displayName: Login
       inputs:
         command: login
-        containerRegistry: 'Space Game Service Connection'
+        containerRegistry: $(demotimne)
     - task: Docker@2
       displayName: 'Build and push leaderboard image to container registry'
       inputs:
