@@ -12,4 +12,4 @@ pool:
 steps:
 - task: MicrosoftSecurityDevOps@1
   inputs:
-    break: true
+    break: false
