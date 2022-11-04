@@ -7,7 +7,7 @@ variables:
   webTailspinRepository: 'space-game-web'
   webLeaderboardRepository: 'space-game-leaderboard'
   #containerRegistry: 'Space Game Service Connection'
-  containerRegistry: 'demotimne'
+  containerRegistry: 'demotime'
   tag: '$(Build.BuildId)'
   vmImage: 'ubuntu-20.04'
 
@@ -36,7 +36,7 @@ stages:
       displayName: Login
       inputs:
         command: login
-        containerRegistry: $(demotimne)
+        containerRegistry: $(containerRegistry)
     - task: Docker@2
       displayName: 'Build and push tailspin image to container registry'
       inputs:
@@ -56,7 +56,7 @@ stages:
       displayName: Login
       inputs:
         command: login
-        containerRegistry: $(demotimne)
+        containerRegistry: $(containerRegistry)
     - task: Docker@2
       displayName: 'Build and push leaderboard image to container registry'
       inputs:
