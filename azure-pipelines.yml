@@ -2,8 +2,12 @@ trigger:
 - main
 variables:
   buildConfiguration: 'Release'
-  webTailspinRepository: 'lijcam/space-game-web'
-  webLeaderboardRepository: 'lijcam/space-game-leaderboard'
+  #webTailspinRepository: 'lijcam/space-game-web'
+  #webLeaderboardRepository: 'lijcam/space-game-leaderboard'
+  webTailspinRepository: 'space-game-web'
+  webLeaderboardRepository: 'space-game-leaderboard'
+  #containerRegistry: 'Space Game Service Connection'
+  containerRegistry: 'demotimne'
   tag: '$(Build.BuildId)'
   vmImage: 'ubuntu-20.04'
 
@@ -40,7 +44,6 @@ stages:
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.Web'
         repository: $(webTailspinRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.Web/Dockerfile'
-        #containerRegistry: 'Space Game Service Connection'
         tags: |
           $(tag)
   - job: 'BuildLeaderboard'
@@ -61,6 +64,5 @@ stages:
         buildContext: '$(Build.Repository.LocalPath)/Tailspin.SpaceGame.LeaderboardContainer'
         repository: $(webLeaderboardRepository)
         dockerfile: '$(Build.SourcesDirectory)/Tailspin.SpaceGame.LeaderboardContainer/Dockerfile'
-        #containerRegistry: 'Space Game Service Connection'
         tags: |
           $(tag)
