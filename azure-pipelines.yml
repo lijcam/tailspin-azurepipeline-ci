@@ -21,7 +21,7 @@ stages:
           break: false
 - stage: 'Build_Containers'
   displayName: 'Build and Push Space Game Containers'
-  dependsOn: ''
+  dependsOn: 'SecOps_Scan'
   jobs:  
   - job: 'BuildTailspin'
     displayName: 'Build Tailspin Container Image'
