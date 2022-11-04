@@ -1,5 +1,5 @@
-trigger: none
-
+trigger:
+- main
 variables:
   buildConfiguration: 'Release'
   webTailspinRepository: 'lijcam/space-game-web'
@@ -8,8 +8,20 @@ variables:
   vmImage: 'ubuntu-20.04'
 
 stages:
+- stage: 'SecOps_Scan'
+  jobs:
+    - job: 'RunScan'
+      displayName: 'Running DevSecOps Scan'
+      pool:
+        vmImage: $(vmImage)
+      steps:
+      - task: MicrosoftSecurityDevOps@1
+        displayName: 'Execute default all scan'
+        inputs:
+          break: false
 - stage: 'Build_Containers'
   displayName: 'Build and Push Space Game Containers'
+  dependsOn: ''
   jobs:  
   - job: 'BuildTailspin'
     displayName: 'Build Tailspin Container Image'
